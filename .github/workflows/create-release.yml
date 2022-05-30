@@ -2,8 +2,8 @@ name: "release"
 
 on:
   push:
-    branches:
-      - "main"
+    tags:
+      - 'v*'
 
 jobs:
   release:
@@ -20,6 +20,12 @@ jobs:
             prop_path: 'version'
       - run: echo ${{steps.version.outputs.prop}} 
 
+      - name: Update module.json
+        run: |
+          sed -i '/"download":/c\    "download": "https://github.com/maxostarr/pathfinder-sheet-field-calculator/releases/download/${{ steps.get_version.outputs.VERSION }}/release-${{steps.version.outputs.prop}}.zip",' module.json
+          cat module.json
+
+
       - name: "Create Zip"
         run: |
           zip -r release-${{steps.version.outputs.prop}}.zip . -x ./.git/**\* ./.github/**\*
@@ -32,3 +38,12 @@ jobs:
           title: "Release"
           files: |
             release-${{steps.version.outputs.prop}}.zip
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          author_name: Github Workflow
+          message: "Deploy Release ${{ steps.version.outputs.prop }}"
+          ref: 'master'
+          add: module.json docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
