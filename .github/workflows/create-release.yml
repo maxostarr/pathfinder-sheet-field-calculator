@@ -57,7 +57,7 @@ jobs:
         with:
           author_name: Github Workflow
           message: "Deploy Release ${{ steps.get_version.outputs.VERSION }}"
-          ref: 'master'
+          ref: 'main'
           add: module.json docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
