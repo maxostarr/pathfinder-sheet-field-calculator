@@ -3,9 +3,9 @@
   "title": "Pathfinder Sheet Calculator for Nate",
   "description": "Calculate pathfinder character sheet fields",
   "author": "Max",
-  "version": "0.0.2",
+    "version": "0.0.5",
   "minimumCoreVersion": "9",
   "compatibleCoreVersion": "9",
-  "download": "",
+   "download": "https://github.com/maxostarr/pathfinder-sheet-field-calculator/releases/download/v0.0.5/release-v0.0.5.zip",
   "esmodules": ["./scripts/pathfinder-sheet.js"]
 }
