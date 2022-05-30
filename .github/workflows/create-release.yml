@@ -22,7 +22,7 @@ jobs:
 
       - name: "Create Zip"
         run: |
-          zip -r release-${{steps.version.outputs.prop}}.zip .
+          zip -r release-${{steps.version.outputs.prop}}.zip . -x ./.git ./.github
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
