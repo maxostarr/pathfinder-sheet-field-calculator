@@ -35,7 +35,7 @@ jobs:
       - name: Update module.json
         run: |
           sed -i '/"version":/c\    "version": "${{ steps.get_version.outputs.VERSION2 }}",' module.json
-          sed -i '/"download":/c\    "download": "https://github.com/maxostarr/pathfinder-sheet-field-calculator/releases/download/${{ steps.get_version.outputs.VERSION }}/release-${{steps.version.outputs.prop}}.zip",' module.json
+          sed -i '/"download":/c\   "download": "https://github.com/maxostarr/pathfinder-sheet-field-calculator/releases/download/${{ steps.get_version.outputs.VERSION }}/release-${{steps.get_version.outputs.VERSION}}.zip",' module.json
           cat module.json
 
 
@@ -58,6 +58,6 @@ jobs:
           author_name: Github Workflow
           message: "Deploy Release ${{ steps.get_version.outputs.VERSION }}"
           ref: 'main'
-          add: module.json docs
+          add: module.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
